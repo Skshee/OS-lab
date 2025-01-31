@@ -1,0 +1,22 @@
+#!/bin/bash
+
+read -p "Enter the directory path: " directory
+
+# Check if the directory exists
+if [ ! -d "$directory" ]; then
+    echo "The specified directory does not exist."
+    exit 1
+fi
+
+# Prompt the user for the search pattern
+read -p "Ente
+# List files and filter with grep
+echo "Files containing the pattern '$pattern' in their names:"
+ls "$directory" 2>/dev/null | grep "$pattern"
+
+# Check if grep found any matches
+if [ $? -ne 0 ]; then
+    echo "No files found matching the pattern '$pattern'."
+fi
+
+# End of script
