@@ -81,24 +81,38 @@ bool request_resources(int processes[], int avail[], int max[][R], int alloc[][R
 }
 
 int main() {
-    int processes[] = {0, 1, 2, 3, 4};
-    int avail[] = {3, 3, 2};
-    int max[P][R] = {
-        {7, 5, 3},
-        {3, 2, 2},
-        {9, 0, 2},
-        {2, 2, 2},
-        {4, 3, 3}
-    };
-    int alloc[P][R] = {
-        {0, 1, 0},
-        {2, 0, 0},
-        {3, 0, 2},
-        {2, 1, 1},
-        {0, 0, 2}
-    };
-    int request[] = {1, 0, 2};
-    int p = 1;
+    int processes[P];
+    int avail[R];
+    int max[P][R];
+    int alloc[P][R];
+    int request[R];
+    int p;
+
+    printf("Enter available resources: ");
+    for (int i = 0; i < R; i++) {
+        scanf("%d", &avail[i]);
+    }
+
+    printf("Enter maximum resource matrix:\n");
+    for (int i = 0; i < P; i++) {
+        for (int j = 0; j < R; j++) {
+            scanf("%d", &max[i][j]);
+        }
+    }
+
+    printf("Enter allocated resource matrix:\n");
+    for (int i = 0; i < P; i++) {
+        for (int j = 0; j < R; j++) {
+            scanf("%d", &alloc[i][j]);
+        }
+    }
+
+    printf("Enter process number making the request: ");
+    scanf("%d", &p);
+    printf("Enter resource request for process %d: ", p);
+    for (int i = 0; i < R; i++) {
+        scanf("%d", &request[i]);
+    }
 
     if (request_resources(processes, avail, max, alloc, request, p)) {
         printf("Request can be granted.\n");
@@ -108,7 +122,3 @@ int main() {
 
     return 0;
 }
-
-
-//gcc -o Q1 Q1.c
-//./Q1
